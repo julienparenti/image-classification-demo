@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/image-classification-demo/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/image-classification-demo/static/js/main.8d0d184d.chunk.js",
-    "main.js.map": "/image-classification-demo/static/js/main.8d0d184d.chunk.js.map",
-    "runtime-main.js": "/image-classification-demo/static/js/runtime-main.a68405e3.js",
-    "runtime-main.js.map": "/image-classification-demo/static/js/runtime-main.a68405e3.js.map",
-    "static/js/2.da5718c3.chunk.js": "/image-classification-demo/static/js/2.da5718c3.chunk.js",
-    "static/js/2.da5718c3.chunk.js.map": "/image-classification-demo/static/js/2.da5718c3.chunk.js.map",
-    "static/js/3.f3e3f114.chunk.js": "/image-classification-demo/static/js/3.f3e3f114.chunk.js",
-    "static/js/3.f3e3f114.chunk.js.map": "/image-classification-demo/static/js/3.f3e3f114.chunk.js.map",
+    "main.js": "/image-classification-demo/static/js/main.d6b67e61.chunk.js",
+    "main.js.map": "/image-classification-demo/static/js/main.d6b67e61.chunk.js.map",
+    "runtime-main.js": "/image-classification-demo/static/js/runtime-main.06efd33c.js",
+    "runtime-main.js.map": "/image-classification-demo/static/js/runtime-main.06efd33c.js.map",
+    "static/js/2.396a29d2.chunk.js": "/image-classification-demo/static/js/2.396a29d2.chunk.js",
+    "static/js/2.396a29d2.chunk.js.map": "/image-classification-demo/static/js/2.396a29d2.chunk.js.map",
+    "static/js/3.389eb8e9.chunk.js": "/image-classification-demo/static/js/3.389eb8e9.chunk.js",
+    "static/js/3.389eb8e9.chunk.js.map": "/image-classification-demo/static/js/3.389eb8e9.chunk.js.map",
     "index.html": "/image-classification-demo/index.html",
     "static/css/main.8c8b27cf.chunk.css.map": "/image-classification-demo/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.da5718c3.chunk.js.LICENSE.txt": "/image-classification-demo/static/js/2.da5718c3.chunk.js.LICENSE.txt",
+    "static/js/2.396a29d2.chunk.js.LICENSE.txt": "/image-classification-demo/static/js/2.396a29d2.chunk.js.LICENSE.txt",
     "static/media/logo.6ce24c58.svg": "/image-classification-demo/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a68405e3.js",
-    "static/js/2.da5718c3.chunk.js",
+    "static/js/runtime-main.06efd33c.js",
+    "static/js/2.396a29d2.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.8d0d184d.chunk.js"
+    "static/js/main.d6b67e61.chunk.js"
   ]
 }
