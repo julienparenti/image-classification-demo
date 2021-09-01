@@ -33,6 +33,7 @@ function App() {
     // Params
     const [picUrl, setPicUrl] = useState("");
     const [picCategory, setPicCategory] = useState("");
+    const [picCategoryProba, setPicCategoryProba] = useState("");
 
     // Functions
     const convertImageToBase64 =(picUrl) => {
@@ -41,13 +42,8 @@ function App() {
     .then(
         (response) => {
             console.log('Image in Base64 :', response)
-            // TO DROP when we have the API
-            const categoriesArray = ['profile',
-                'office'];
-            const randomNumber = Math.floor(Math.random() * categoriesArray.length);
-            const picCategory = categoriesArray[randomNumber];
-            console.log('Random category :', picCategory);
-            setPicCategory(picCategory);
+            // API test
+            requestSagemakerAPI(response)
         }
     )
     .catch(
@@ -57,19 +53,29 @@ function App() {
     )
     }
 
-    //var AWS = require('aws-sdk');
+    const requestSagemakerAPI =(base64) => {
+        const sagemaker_url = "https://cors-anywhere.herokuapp.com/https://363xyhbjri.execute-api.eu-central-1.amazonaws.com/dev/predict";
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", sagemaker_url);
+        xhr.setRequestHeader("Content-Type", "text/plain");
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+        xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
 
-    //var sageMakerRuntime = new AWS.SageMakerRuntime({region: 'us-west-2',});
-
-    //var params = {
-    //  Body: new Buffer('{"instances": [1.0,2.0,5.0]}'),
-    //  EndpointName: 'half-plus-three'
-    //};
-
-    //sageMakerRuntime.invokeEndpoint(params, function(err, data) {
-    //  responseData = JSON.parse(Buffer.from(data.Body).toString('utf8'))
-    //  console.log(responseData);
-    //});
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log('Request API status :', xhr.status);
+                console.log('Results API :', xhr.responseText);
+                const results = JSON.parse(xhr.responseText);
+                const picCategory = Object.keys(results)[0];
+                const picCategoryProba = Object.values(results)[0];
+                console.log('Predicted Category :', picCategory);
+                console.log('Predicted Category Probability:', picCategoryProba);
+                setPicCategory(picCategory);
+                setPicCategoryProba(picCategoryProba);
+            }};
+        xhr.send(base64);
+    }
 
 
   return (
@@ -124,7 +130,19 @@ function App() {
               <div>
                   <br />
                   <br />
-                  <Button style={{width:"20vh", height:"5vh", background:"#16a085", color:"#FFFFFF"}} variant= "outlined">{picCategory}</Button>
+                  <Button style={{width:"20vh", height:"5vh", background:"#4051b5", color:"#FFFFFF"}} variant= "outlined">{picCategory} </Button>
+              </div>
+      : <></>}
+      <br/>
+
+      </Grid>
+
+      <Grid item xs ={12} style={{display:"flex", alignItems:"center", flexDirection:'column'}}>
+          {picCategory !== "" ?
+              <div>
+                  <br />
+                  <br />
+                  <Typography style={{color:"#4051b5", fontStyle: "italic", fontWeight: "bold"}} > Confidence in the prediction : {Math.round(picCategoryProba*100) + "%"} </Typography>
               </div>
       : <></>}
       <br/>
