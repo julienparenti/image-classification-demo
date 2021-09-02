@@ -54,21 +54,25 @@ function App() {
     }
 
     const requestSagemakerAPI =(base64) => {
-        const sagemaker_url = "https://cors-anywhere.herokuapp.com/https://363xyhbjri.execute-api.eu-central-1.amazonaws.com/dev/predict";
+        //const sagemaker_url = "https://cors-anywhere.herokuapp.com/https://363xyhbjri.execute-api.eu-central-1.amazonaws.com/dev/predict";
+        const sagemaker_url = "https://363xyhbjri.execute-api.eu-central-1.amazonaws.com/dev/predict";
+
         const xhr = new XMLHttpRequest();
         xhr.open("POST", sagemaker_url);
         xhr.setRequestHeader("Content-Type", "text/plain");
-        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-        xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-        xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+        //xhr.setRequestHeader("Access-Control-Allow-Methods", "OPTIONS, POST");
+        //xhr.setRequestHeader("Access-Control-Allow-Headers", "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token");
+        //xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 console.log('Request API status :', xhr.status);
                 console.log('Results API :', xhr.responseText);
                 const results = JSON.parse(xhr.responseText);
-                const picCategory = Object.keys(results)[0];
-                const picCategoryProba = Object.values(results)[0];
+                const picCategory = Object.keys(results).reduce(function(a, b){ return results[a] > results[b] ? a : b });
+                const picCategoryProba = Object.values(results).reduce(function(a, b){ return a > b ? a : b });
                 console.log('Predicted Category :', picCategory);
                 console.log('Predicted Category Probability:', picCategoryProba);
                 setPicCategory(picCategory);
